@@ -1,7 +1,11 @@
 "use client";
 import { useState } from "react";
 
-const InputForm = () => {
+interface InputFormProps {
+  returnGraphInput(input: GraphInput): void;
+}
+
+const InputForm = (props: InputFormProps) => {
   const [url, setUrl] = useState("");
 
   const handleChange = (url: string) => {
@@ -17,6 +21,7 @@ const InputForm = () => {
       })
     }).then(r => r.json())
     console.log(result)
+    props.returnGraphInput(result.graphInput)
   };
 
   return (
